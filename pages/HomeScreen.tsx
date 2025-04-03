@@ -1,11 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TaskInput } from '../app/components/TaskInput';
 import { TaskList } from '../app/components/TaskList';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export const HomeScreen: React.FC = () => {
   const [tasks, setTasks] = useState<{ id: number; title: string; completed: boolean }[]>([]);
+
+  useEffect(() => {
+    const loadTasks = async () => {
+      const storedTasks = await AsyncStorage.getItem('tasks');
+      if (storedTasks) {
+        setTasks(JSON.parse(storedTasks));
+      }
+    };
+    loadTasks();
+  }, []);
+
+  useEffect(() => {
+    const saveTasks = async () => {
+      await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+    };
+    saveTasks();
+  }, [tasks]);
 
   const addTask = (taskTitle: string) => {
     setTasks((prevTasks) => [
