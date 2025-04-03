@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { TaskInput } from '../app/components/TaskInput';
 import { TaskList } from '../app/components/TaskList';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const HomeScreen: React.FC = () => {
   const [tasks, setTasks] = useState<{ id: number; title: string; completed: boolean }[]>([]);
@@ -26,22 +27,25 @@ export const HomeScreen: React.FC = () => {
   };
 
   return (
-    <>
-    <View style={styles.container}>
-      <Text style={styles.title}>Gestione Attività</Text>
-      <TaskInput onAddTask={addTask} />
-      <TaskList tasks={tasks} onDelete={deleteTask} onToggle={toggleTaskCompletion} />
-    </View>
-    </>
+    <LinearGradient colors={['#a1c4fd', '#c2e9fb']} style={styles.gradientContainer}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Gestione Attività</Text>
+        <TaskInput onAddTask={addTask} />
+        <TaskList tasks={tasks} onDelete={deleteTask} onToggle={toggleTaskCompletion} />
+      </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
+  gradientContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 20,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: 24,
