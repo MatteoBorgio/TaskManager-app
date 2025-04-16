@@ -3,7 +3,7 @@ import { HomeScreen } from '../pages/HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
-
+import { Settings } from '../pages/Settings';
 const Stack = createNativeStackNavigator();
 
 export default function Index() {
@@ -20,7 +20,9 @@ export default function Index() {
           headerTintColor: '#ffffff', 
           headerTitle: () => (
             <View style={styles.headerTitleContainer}>
-              <Ionicons name="checkmark-circle-outline" size={24} color="#ffffff" />
+              <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                <Ionicons name="settings-outline" size={24} color="#ffffff" />
+              </TouchableOpacity>
               <Text style={styles.headerTitleText}>Task Manager App</Text>
             </View>
           ),
@@ -45,6 +47,21 @@ export default function Index() {
             fontWeight: 'bold',
           },
         }} 
+      />
+      <Stack.Screen 
+        name="Settings" 
+        component={Settings} 
+        options={{
+          title: "Settings",
+          headerStyle: {
+            backgroundColor: '#4a90e2',
+          },
+          headerTintColor: '#ffffff', 
+          headerTitleStyle: {
+            fontSize: 20,
+            fontWeight: 'bold',
+          },
+        }}
       />
     </Stack.Navigator>
   );
