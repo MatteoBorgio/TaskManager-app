@@ -3,11 +3,14 @@ import { View, Text, StyleSheet } from 'react-native';
 export const About = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>About Us</Text>
-      <Text style={styles.text}>
-        This is a simple app built with React Native. We aim to provide useful features for users.
-      </Text>
-      <Text style={styles.text}>Version 1.0.0</Text>
+      <View style={styles.card}>
+        <Text style={styles.title}>About Us</Text>
+        <Text style={styles.text}>
+          App for task management and productivity.
+          {'\n'}This app helps you manage your tasks efficiently and effectively.
+        </Text>
+        <Text style={styles.version}>Version 1.0.0</Text>
+      </View>
     </View>
   );
 };
@@ -17,18 +20,38 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#f5f5f5',
+    padding: 10,
+    backgroundColor: '#f5f7fa',
+  },
+  card: {
+    backgroundColor: '#ffffff',
+    borderRadius: 50,
+    padding: 40,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+    width: '85%',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 30,
+    fontSize: 34,
     fontWeight: 'bold',
-    marginBottom: 10,
+    color: '#4a90e2',
+    marginBottom: 20,
   },
   text: {
     fontSize: 18,
     textAlign: 'center',
-    marginBottom: 10,
+    color: '#4f4f4f',
+    marginBottom: 20,
+    lineHeight: 27,
+  },
+  version: {
+    fontSize: 16,
+    fontStyle: 'italic',
+    color: '#828282',
   },
 });
 

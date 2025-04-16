@@ -3,7 +3,6 @@ import { View, StyleSheet, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TaskInput } from '../app/components/TaskInput';
 import { TaskList } from '../app/components/TaskList';
-import { LinearGradient } from 'expo-linear-gradient';
 
 export const HomeScreen: React.FC = () => {
   const [tasks, setTasks] = useState<{ id: number; title: string; completed: boolean }[]>([]);
@@ -45,30 +44,45 @@ export const HomeScreen: React.FC = () => {
   };
 
   return (
-    <LinearGradient colors={['#a1c4fd', '#c2e9fb']} style={styles.gradientContainer}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Gestione Attività</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Task Manager</Text>
+      </View>
+      <View style={styles.content}>
         <TaskInput onAddTask={addTask} />
         <TaskList tasks={tasks} onDelete={deleteTask} onToggle={toggleTaskCompletion} />
       </View>
-    </LinearGradient>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  gradientContainer: {
-    flex: 1,
-  },
   container: {
     flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: '#f5f7fa', 
+  },
+  header: {
+    backgroundColor: '#4a90e2',
+    paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    elevation: 4,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
+    color: '#ffffff',
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 4,
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+  },
+  taskListContainer: {
+    marginTop: 20,
   },
 });

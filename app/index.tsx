@@ -14,20 +14,38 @@ export default function Index() {
         component={HomeScreen} 
         options={({ navigation }) => ({
           title: 'Task Manager app',
+          headerStyle: {
+            backgroundColor: '#4a90e2',
+          },
+          headerTintColor: '#ffffff', 
           headerTitle: () => (
             <View style={styles.headerTitleContainer}>
-              <Ionicons name="bookmarks" size={24} color="black" />
-              <Text style={styles.headerTitleText}>Task Manager app</Text>
+              <Ionicons name="checkmark-circle-outline" size={24} color="#ffffff" />
+              <Text style={styles.headerTitleText}>Task Manager App</Text>
             </View>
           ),
           headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate('About')}>
-              <Ionicons name="information-circle-outline" size={24} color="black" />
+              <Ionicons name="information-circle-outline" size={24} color="#ffffff" />
             </TouchableOpacity>
           ),
         })}
       />
-      <Stack.Screen name="About" component={About} options={{ title: "About" }} />
+      <Stack.Screen 
+        name="About" 
+        component={About} 
+        options={{
+          title: "About",
+          headerStyle: {
+            backgroundColor: '#4a90e2',
+          },
+          headerTintColor: '#ffffff', 
+          headerTitleStyle: {
+            fontSize: 20,
+            fontWeight: 'bold',
+          },
+        }} 
+      />
     </Stack.Navigator>
   );
 }
